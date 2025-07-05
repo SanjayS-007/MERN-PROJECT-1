@@ -1,28 +1,25 @@
-
 import React from 'react';
+import './CreditExpenseBlock.css';
 
 const CreditExpenseBlock = ({ credit, expense }) => {
   return (
-    <div className="container mt-4">
+    <div className="container-fluid themed-blocks py-5">
       <div className="row justify-content-center g-4">
-        <div
-          className="col-md-3 p-4 text-white bg-success rounded text-center shadow-sm hover-scale"
-          style={{ transition: "transform 0.3s, box-shadow 0.3s", cursor: "pointer" }}
-          onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.05)'}
-          onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
-        >
-          <h4>Credit</h4>
-          <p className="fs-5">₹ {credit}</p>
+        <div className="col-12 col-md-5 themed-card credit-card me-md-3">
+          <div className="icon">💰</div>
+          <div className="text">
+            <h5>Income This Month</h5>
+            <p className="amount">₹ {credit}</p>
+            <small className="note">You've earned well. Great job!</small>
+          </div>
         </div>
-        <div
-          className="col-md-3 p-4 text-white bg-danger rounded text-center shadow-sm hover-scale"
-          style={{ transition: "transform 0.3s, box-shadow 0.3s", cursor: "pointer" }}
-          onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.05)'}
-          onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
-
-        >
-          <h4>Expense</h4>
-          <p className="fs-5">₹ {expense}</p>
+        <div className="col-12 col-md-5 themed-card expense-card">
+          <div className="icon">📤</div>
+          <div className="text">
+            <h5>Spending This Month</h5>
+            <p className="amount">₹ {expense}</p>
+            <small className="note">Track your spending to save more.</small>
+          </div>
         </div>
       </div>
     </div>
