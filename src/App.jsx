@@ -1,12 +1,47 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
+// import CreditExpenseBlock from './CreditExpenseBlock';
+
+// import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import CreditExpenseBlock from './CreditExpenseBlock';
+import CalendarModal from './CalendarModal';
+import TransactionList from './TransactionList';
 import './App.css';
+import ExportButton from './ExportButton';
+import SpendingChart from './SpendingChart';
+
+
+
+const mockTransactions = [
+  { date: '2025-07-01', type: 'credit', amount: 5000, note: 'Salary' },
+  { date: '2025-07-01', type: 'debit', amount: 1500, note: 'Groceries' },
+    { date: '2025-07-01', type: 'credit', amount: 5000, note: 'Salary' },
+  { date: '2025-07-01', type: 'debit', amount: 1500, note: 'Groceries' },
+    { date: '2025-07-01', type: 'credit', amount: 5000, note: 'Salary' },
+  { date: '2025-07-01', type: 'debit', amount: 1500, note: 'Groceries' },
+    { date: '2025-07-01', type: 'credit', amount: 5000, note: 'Salary' },
+  { date: '2025-07-01', type: 'debit', amount: 1500, note: 'Groceries' },
+    { date: '2025-07-01', type: 'credit', amount: 5000, note: 'Salary' },
+  { date: '2025-07-01', type: 'debit', amount: 1500, note: 'Groceries' },
+    { date: '2025-07-01', type: 'credit', amount: 5000, note: 'Salary' },
+  { date: '2025-07-01', type: 'debit', amount: 1500, note: 'Groceries' },
+    { date: '2025-07-01', type: 'credit', amount: 5000, note: 'Salary' },
+  { date: '2025-07-01', type: 'debit', amount: 1500, note: 'Groceries' },
+    { date: '2025-07-01', type: 'credit', amount: 5000, note: 'Salary' },
+  { date: '2025-07-01', type: 'debit', amount: 1500, note: 'Groceries' },
+  { date: '2025-07-02', type: 'credit', amount: 2000, note: 'Freelance' },
+  { date: '2025-07-03', type: 'debit', amount: 800, note: 'Electricity' },
+];
+
+
 
 function App() {
   const [showData, setShowData] = useState(false);
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-
+      const [calendarVisible, setCalendarVisible] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(null);
+  const transactionRef = useRef(null);  
   const handleAccess = () => {
     if (password === '1234') { // 👈 Replace with your own password logic
       setShowData(true);
@@ -15,7 +50,18 @@ function App() {
       setError('Incorrect password');
     }
   };
+  
+  const handleDateClick = (date) => {
+    const isoDate = date.toISOString().slice(0, 10);
+    setSelectedDate(isoDate);
 
+    // ✅ Smooth scroll to transaction list
+    setTimeout(() => {
+      if (transactionRef.current) {
+        transactionRef.current.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100); // small delay ensures it's rendered
+  };
   if (!showData) {
     return (
       <div className="lock-screen d-flex flex-column align-items-center justify-content-center ">
@@ -34,7 +80,42 @@ function App() {
     );
   }
 
-  return <CreditExpenseBlock credit={15000} expense={8000} />;
+
+
+  // return <CreditExpenseBlock onCreditClick={() => setCalendarVisible(true)}  />;
+    return (
+    <div>
+      <CreditExpenseBlock
+        onCreditClick={() => setCalendarVisible(true)}
+        credit={15000}
+        expense={8000}
+      />
+      <SpendingChart transactions={mockTransactions} />
+
+      {calendarVisible && (
+        <CalendarModal
+          transactions={mockTransactions}
+          onDateClick={handleDateClick}
+          onClose={() => setCalendarVisible(false)}
+        />
+      )}
+
+  {/* ✅ Scroll target for transaction list + export */}
+  {selectedDate && (
+    <div ref={transactionRef} className="transaction-fade">
+      <ExportButton
+        transactions={mockTransactions.filter(tx => tx.date === selectedDate)}
+      />
+      <TransactionList
+        transactions={mockTransactions}
+        selectedDate={selectedDate}
+      />
+    </div>
+  )}
+</div>
+
+  );
 }
+
 
 export default App;

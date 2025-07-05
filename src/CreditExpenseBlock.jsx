@@ -1,11 +1,11 @@
 import React from 'react';
 import './CreditExpenseBlock.css';
 
-const CreditExpenseBlock = ({ credit, expense }) => {
+const CreditExpenseBlock = ({ credit, expense,onCreditClick  }) => {
   return (
     <div className="container-fluid themed-blocks py-5">
       <div className="row justify-content-center gx-4 gy-4">
-        <div className="col-12 col-md-5 themed-card credit-card">
+        <div className="col-12 col-md-5 themed-card credit-card" onClick={onCreditClick}>
           <div className="icon">💰</div>
           <div className="text">
             <h5>Income This Month</h5>
