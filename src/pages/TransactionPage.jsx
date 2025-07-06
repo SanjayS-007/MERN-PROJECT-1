@@ -28,6 +28,24 @@ const TransactionPage = ({ type }) => {
     setShowAll(prev => !prev);
   };
 
+  const handleDownload = () => {
+  const dataToExport = allTransactions.filter(tx => tx.type === type);
+  const csvRows = [
+    ['Type', 'Amount', 'Date'], // header
+    ...dataToExport.map(tx => [tx.type, tx.amount, tx.date])
+  ];
+
+  const csvContent = csvRows.map(e => e.join(',')).join('\n');
+  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement('a');
+  link.setAttribute('href', url);
+  link.setAttribute('download', `${type}-transactions.csv`);
+  link.click();
+};
+
+
   return (
     <div style={{ display: 'flex', gap: '30px', padding: '30px' }}>
       {/* Filtered or All Transactions */}
@@ -47,6 +65,10 @@ const TransactionPage = ({ type }) => {
         <button onClick={handleToggle} className="show-all-btn">
           {showAll ? 'Show Filtered Transactions' : 'Show All Transactions'}
         </button>
+        <button onClick={handleDownload} className="download-btn">
+          📥 Download CSV
+        </button>
+
       </div>
     </div>
   );
