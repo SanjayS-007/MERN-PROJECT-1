@@ -1,0 +1,130 @@
+.add-category-container {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.add-category-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+.add-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.add-form label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  color: #444;
+}
+
+.add-form input,
+.add-form select {
+  margin-top: 8px;
+  padding: 10px 14px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+  transition: 0.2s ease;
+}
+
+.add-form input:focus,
+.add-form select:focus {
+  border-color: #0077ff;
+  box-shadow: 0 0 0 2px rgba(0, 119, 255, 0.2);
+}
+
+.submit-btn {
+  background: linear-gradient(to right, #0077ff, #0052cc);
+  color: white;
+  padding: 12px;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.submit-btn:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 16px rgba(0, 82, 204, 0.3);
+}
+
+.preview-card {
+  margin-top: 30px;
+  padding: 20px;
+  border-radius: 16px;
+  background: linear-gradient(to right, #e3f2fd, #f1f8e9);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  font-size: 1rem;
+  color: #333;
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  animation: popUp 0.4s ease;
+  color: #333;
+  font-size: 1rem;
+  text-align: center;
+}
+
+@keyframes popUp {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* 🎨 Styling based on type */
+.credit-popup {
+  border-left: 6px solid #00c853;
+  background: linear-gradient(to right, #e8f5e9, #ffffff);
+}
+
+.debit-popup {
+  border-left: 6px solid #d32f2f;
+  background: linear-gradient(to right, #ffebee, #ffffff);
+}
