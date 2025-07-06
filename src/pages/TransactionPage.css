@@ -1,0 +1,53 @@
+.transaction-page {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  gap: 40px;
+  background: #f0f0f3;
+  min-height: 100vh;
+}
+
+.transactions {
+  flex: 1.5;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.calendar-box {
+  flex: 1;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tx-item {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: 500;
+  background: #f9f9f9;
+}
+
+.tx-item.credit {
+  border-left: 5px solid green;
+}
+
+.tx-item.debit {
+  border-left: 5px solid red;
+}
+
+.reset-btn {
+  margin-top: 15px;
+  padding: 6px 12px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}

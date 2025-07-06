@@ -3,44 +3,55 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 // import './CalendarModal.css';
 
-const CalendarModal = ({ transactions, onDateClick, onClose }) => {
-  // Group transactions by date
-  const groupedData = transactions.reduce((acc, tx) => {
-    acc[tx.date] = acc[tx.date] || { credit: 0, debit: 0 };
-    acc[tx.date][tx.type] += 1;
-    return acc;
-  }, {});
+const CalendarModal = ({ onDateClick, onClose }) => {
+
 
   // Create a colored dot and tooltip per date
-  const tileContent = ({ date }) => {
-    const key = date.toISOString().slice(0, 10);
-    const txData = groupedData[key];
+ const transactions = [  // or import from a shared file
+  { date: '2025-07-01', type: 'credit', amount: 5000 },
+  { date: '2025-07-01', type: 'debit', amount: 1500 },
+  { date: '2025-07-02', type: 'credit', amount: 2000 },
+];
 
-    if (!txData) return null;
+const groupedData = transactions.reduce((acc, tx) => {
+  acc[tx.date] = acc[tx.date] || { credit: 0, debit: 0 };
+  acc[tx.date][tx.type]++;
+  return acc;
+}, {});
 
-    const tooltip = `💰 ${txData.credit || 0} Credit, 📤 ${txData.debit || 0} Debit`;
+const tileContent = ({ date }) => {
+  const key = date.toISOString().slice(0, 10);
+  const txData = groupedData[key];
+  if (!txData) return null;
 
-    return (
+  const tooltip = `💰 ${txData.credit || 0} Credit, 📤 ${txData.debit || 0} Debit`;
+
+  return (
+    <>
       <div
-        title={tooltip}
+        title={tooltip} // ✅ Title now applies directly on outer wrapper
         style={{
-          marginTop: 4,
           display: 'flex',
           justifyContent: 'center',
+          alignItems: 'center',
+          marginTop: 2
         }}
       >
         <span
           style={{
+            display: 'inline-block',
             width: 8,
             height: 8,
             borderRadius: '50%',
-            backgroundColor: '#17a2b8', // info color
-            display: 'inline-block',
+            backgroundColor: '#17a2b8',
           }}
-        />
+        ></span>
       </div>
-    );
-  };
+    </>
+  );
+};
+
+
 
   return (
     <div className="modal-backdrop">
