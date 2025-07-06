@@ -5,6 +5,7 @@ const CreditExpenseBlock = ({
   credit,
   expense,
   onCreditClick,
+  onDebitClick,
   lastCredit,
   lastCreditDate,
   avgCredit,
@@ -39,7 +40,7 @@ const CreditExpenseBlock = ({
         </div>
 
         {/* Expense Card - Column */}
-        <div className="col-12 col-md-6 col-lg-5">
+        <div className="col-12 col-md-6 col-lg-5" onClick={onDebitClick}>
           <div className="themed-card expense-card p-4 h-100">
             <div className="icon mb-3">📤</div>
             <h4>Spending This Month</h4>
@@ -59,7 +60,11 @@ const CreditExpenseBlock = ({
             </div>
           </div>
         </div>
-
+        <div className="d-flex justify-content-center">
+            <button className="show-all-btn">
+              Show All Transactions
+            </button>
+        </div>
       </div>
     </div>
   );

@@ -8,6 +8,7 @@ const allTransactions = [
   { id: 1, type: 'credit', amount: 5000, date: '2025-07-01' },
   { id: 2, type: 'credit', amount: 2000, date: '2025-07-02' },
   { id: 3, type: 'credit', amount: 3000, date: '2025-07-05' },
+  { id: 4, type: 'debit', amount: 1000, date: '2025-07-03'},
 ];
 
 const TransactionPage = ({ type }) => {

@@ -11,6 +11,7 @@ function HomePage() {
     <div>
       <CreditExpenseBlock
         onCreditClick={() => navigate('/transactions/credit')}
+        onDebitClick={() => navigate('/transactions/debit')}
         credit={15000}
         expense={8000}
         lastCredit={1200}
