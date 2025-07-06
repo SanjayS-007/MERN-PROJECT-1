@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import CalendarModal from '../CalendarModal';
 import TransactionList from '../TransactionList';
+import jsPDF from 'jspdf';
+
 
 const allTransactions = [
   { id: 1, type: 'credit', amount: 5000, date: '2025-07-01' },
@@ -28,22 +30,43 @@ const TransactionPage = ({ type }) => {
     setShowAll(prev => !prev);
   };
 
-  const handleDownload = () => {
+const handleDownload = (e) => {
+  const format = e.target.value;
   const dataToExport = allTransactions.filter(tx => tx.type === type);
-  const csvRows = [
-    ['Type', 'Amount', 'Date'], // header
-    ...dataToExport.map(tx => [tx.type, tx.amount, tx.date])
-  ];
 
-  const csvContent = csvRows.map(e => e.join(',')).join('\n');
-  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-  const url = URL.createObjectURL(blob);
+  if (format === 'csv') {
+    const csvRows = [
+      ['Type', 'Amount', 'Date'],
+      ...dataToExport.map(tx => [tx.type, tx.amount, tx.date])
+    ];
+    const csvContent = csvRows.map(e => e.join(',')).join('\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', `${type}-transactions.csv`);
+    link.click();
+  }
 
-  const link = document.createElement('a');
-  link.setAttribute('href', url);
-  link.setAttribute('download', `${type}-transactions.csv`);
-  link.click();
+  if (format === 'pdf') {
+    const doc = new jsPDF();
+    doc.setFontSize(14);
+    doc.text(`${type.toUpperCase()} Transactions`, 20, 20);
+
+    let y = 40;
+    doc.setFontSize(12);
+    doc.text("Type      Amount      Date", 20, 30);
+    dataToExport.forEach((tx, index) => {
+      doc.text(`${tx.type}      ₹${tx.amount}      ${tx.date}`, 20, y);
+      y += 10;
+    });
+
+    doc.save(`${type}-transactions.pdf`);
+  }
+
+  e.target.value = ''; // reset dropdown
 };
+
 
 
   return (
@@ -62,12 +85,19 @@ const TransactionPage = ({ type }) => {
           setShowAll(false); // reset to filtered view
         }} />
 
-        <button onClick={handleToggle} className="show-all-btn">
-          {showAll ? 'Show Filtered Transactions' : 'Show All Transactions'}
-        </button>
-        <button onClick={handleDownload} className="download-btn">
-          📥 Download CSV
-        </button>
+        <div className="transaction-controls">
+  <button onClick={handleToggle} className="show-all-btn">
+    {showAll ? 'Show Filtered Transactions' : 'Show All Transactions'}
+  </button>
+
+  <select onChange={handleDownload} className="download-dropdown" defaultValue="">
+    <option value="" disabled>📥 Download As</option>
+    <option value="csv">CSV</option>
+    <option value="pdf">PDF</option>
+  </select>
+</div>
+
+
 
       </div>
     </div>

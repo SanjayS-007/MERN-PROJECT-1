@@ -73,39 +73,54 @@
     transform: translateY(0);
   }
 }
-.show-all-btn {
+
+.transaction-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
   margin-top: 20px;
+}
+
+.show-all-btn {
   padding: 12px 24px;
-  font-size: 1rem;
   background: linear-gradient(to right, #00c853, #43a047);
   color: white;
+  font-weight: 600;
+  font-size: 1rem;
   border: none;
   border-radius: 12px;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 200, 83, 0.3);
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 14px rgba(0, 200, 83, 0.3);
+  transition: all 0.2s ease;
 }
 
 .show-all-btn:hover {
-  transform: scale(1.03);
-  box-shadow: 0 6px 18px rgba(0, 200, 83, 0.4);
+  transform: scale(1.04);
+  box-shadow: 0 6px 18px rgba(0, 200, 83, 0.45);
 }
 
-.download-btn {
-  margin-top: 20px;
-  margin-left: 10px;
-  padding: 12px 24px;
+.download-dropdown {
+  padding: 12px 20px;
   font-size: 1rem;
-  background: linear-gradient(to right, #1e88e5, #1976d2);
-  color: white;
-  border: none;
+  font-weight: 500;
+  background-color: #ffffff;
+  color: #333;
+  border: 2px solid #d3d3d3;
   border-radius: 12px;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(25, 118, 210, 0.3);
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 140 140' width='14' height='14' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23333' d='M70 90L40 60h60z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
 }
 
-.download-btn:hover {
-  transform: scale(1.03);
-  box-shadow: 0 6px 18px rgba(25, 118, 210, 0.4);
+.download-dropdown:hover {
+  border-color: #aaa;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  transform: scale(1.02);
 }
+
