@@ -1,49 +1,55 @@
-// src/pages/TransactionPage.jsx
-import React, { useState } from 'react';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
-import './TransactionPage.css';
+import { useState, useEffect } from 'react';
+import CalendarModal from '../CalendarModal';
+import TransactionList from '../TransactionList';
 
 const allTransactions = [
-  { date: '2025-07-01', type: 'credit', amount: 5000 },
-  { date: '2025-07-01', type: 'debit', amount: 1500 },
-  { date: '2025-07-02', type: 'credit', amount: 2000 },
-  { date: '2025-07-03', type: 'debit', amount: 1000 },
-  { date: '2025-07-05', type: 'credit', amount: 3000 },
+  { id: 1, type: 'credit', amount: 5000, date: '2025-07-01' },
+  { id: 2, type: 'credit', amount: 2000, date: '2025-07-02' },
+  { id: 3, type: 'credit', amount: 3000, date: '2025-07-05' },
 ];
 
-function TransactionPage() {
+const TransactionPage = ({ type }) => {
   const [selectedDate, setSelectedDate] = useState(null);
+  const [showAll, setShowAll] = useState(false);
+  const [filteredTransactions, setFilteredTransactions] = useState([]);
 
-  const filtered = selectedDate
-    ? allTransactions.filter(tx => tx.date === selectedDate.toISOString().slice(0, 10))
-    : allTransactions;
+  useEffect(() => {
+    if (showAll || !selectedDate) {
+      setFilteredTransactions(allTransactions.filter(tx => tx.type === type));
+    } else {
+      const filtered = allTransactions.filter(
+        tx => tx.type === type && tx.date === selectedDate
+      );
+      setFilteredTransactions(filtered);
+    }
+  }, [selectedDate, type, showAll]);
+
+  const handleToggle = () => {
+    setShowAll(prev => !prev);
+  };
 
   return (
-    <div className="transaction-page">
-      <div className="transactions">
-        <h3>💰 Transactions</h3>
-        {filtered.length === 0 ? (
-          <p>No transactions on this date.</p>
-        ) : (
-          filtered.map((tx, i) => (
-            <div key={i} className={`tx-item ${tx.type}`}>
-              <strong>{tx.type.toUpperCase()}</strong> - ₹{tx.amount} on {tx.date}
-            </div>
-          ))
-        )}
+    <div style={{ display: 'flex', gap: '30px', padding: '30px' }}>
+      {/* Filtered or All Transactions */}
+      <div style={{ flex: 1 }}>
+        <h2>💰 {type.toUpperCase()} Transactions</h2>
+        <TransactionList transactions={filteredTransactions} />
       </div>
-      <div className="calendar-box">
-        <h4>Select Date</h4>
-        <Calendar onClickDay={setSelectedDate} />
-        {selectedDate && (
-          <button onClick={() => setSelectedDate(null)} className="reset-btn">
-            Show All
-          </button>
-        )}
+
+      {/* Calendar + Toggle Button */}
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <h3>Select Date</h3>
+        <CalendarModal onDateSelect={date => {
+          setSelectedDate(date);
+          setShowAll(false); // reset to filtered view
+        }} />
+
+        <button onClick={handleToggle} className="show-all-btn">
+          {showAll ? 'Show Filtered Transactions' : 'Show All Transactions'}
+        </button>
       </div>
     </div>
   );
-}
+};
 
 export default TransactionPage;
