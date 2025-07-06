@@ -13,6 +13,12 @@ function HomePage() {
         onCreditClick={() => navigate('/calendar')}
         credit={15000}
         expense={8000}
+        lastCredit={1200}
+        lastCreditDate={"2025-07-03"}
+        avgCredit={9800}
+        lastExpense={650}
+        lastExpenseDate={"2025-07-02"}
+        avgExpense={7200}
       />
     </div>
   );
