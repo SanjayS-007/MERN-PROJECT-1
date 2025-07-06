@@ -10,7 +10,7 @@ function HomePage() {
   return (
     <div>
       <CreditExpenseBlock
-        onCreditClick={() => navigate('/calendar')}
+        onCreditClick={() => navigate('/transactions/credit')}
         credit={15000}
         expense={8000}
       />
