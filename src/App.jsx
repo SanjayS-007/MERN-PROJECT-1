@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import CalendarPage from './pages/CalendarPage';
 import TransactionPage from './pages/TransactionPage';
+import AddCategoryPage from './pages/AddCategoryPage';
 
 function App() {
   return (
@@ -13,6 +14,8 @@ function App() {
       <Route path="/transactions/credit" element={<TransactionPage type="credit" />} />
       <Route path="/transactions/debit" element={<TransactionPage type="debit" />} />
       <Route path="*" element={<div>404 Not Found</div>} />
+      <Route path="/add-category" element={<AddCategoryPage />} />
+
     </Routes>
   );
 }

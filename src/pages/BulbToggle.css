@@ -1,0 +1,46 @@
+.svg-bulb-container {
+  cursor: pointer;
+  width: 60px;
+  height: 150px;
+  margin-left: 15px;
+}
+
+.bulb-svg {
+  transform-origin: top center;
+  animation: swing 2s infinite ease-in-out;
+  transition: filter 0.4s ease;
+}
+
+.bulb-on .bulb-body circle {
+  fill: #ffe600;
+  filter: drop-shadow(0 0 10px #ffd700);
+}
+
+.bulb-off .bulb-body circle {
+  fill: #444;
+  filter: none;
+}
+
+@keyframes swing {
+  0%, 100% { transform: rotate(-5deg); }
+  50% { transform: rotate(5deg); }
+}
+
+/* Optional dark mode support */
+body.dark-mode {
+  background-color: #121212;
+  color: #eee;
+}
+
+body.dark-mode .navbar {
+  background-color: #1a1a2e;
+}
+@keyframes pull {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+  100% { transform: translateY(0); }
+}
+
+.animate-pull {
+  animation: pull 0.3s ease-in-out;
+}
