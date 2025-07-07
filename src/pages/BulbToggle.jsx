@@ -21,6 +21,7 @@ const BulbToggle = () => {
   };
 
   return (
+    <div className={`transition-all duration-300 ${isPulled ? 'bulb-swing' : ''}`}>
     <div className="flex justify-center items-center w-16 h-40 relative cursor-pointer" onClick={toggleBulb}>
       {/* SVG */}
       <svg className={`transition-all duration-300 ${isPulled ? 'animate-pull' : ''}`} width="60" height="110" viewBox="0 0 60 150">
@@ -32,9 +33,11 @@ const BulbToggle = () => {
         <circle cx="30" cy="65" r="4" fill="#999" />
 
         {/* Bulb */}
+        <g className={`bulb-body ${isOn ? 'bulb-bounce' : ''}`}>
         <g className="bulb-body">
           <circle cx="30" cy="90" r="16" fill={isOn ? "#FFD700" : "#333"} />
           <rect x="25" y="106" width="10" height="6" fill="#999" />
+        </g>
         </g>
 
         {/* Glow */}
@@ -50,8 +53,7 @@ const BulbToggle = () => {
         </defs>
       </svg>
 
-      {/* Audio */}
-      {/* <audio ref={audioRef} src={clickSound} preload="auto" /> */}
+    </div>
     </div>
   );
 };

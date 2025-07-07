@@ -21,10 +21,7 @@
   filter: none;
 }
 
-@keyframes swing {
-  0%, 100% { transform: rotate(-5deg); }
-  50% { transform: rotate(5deg); }
-}
+
 
 /* Optional dark mode support */
 body.dark-mode {
@@ -43,4 +40,26 @@ body.dark-mode .navbar {
 
 .animate-pull {
   animation: pull 0.3s ease-in-out;
+}
+@keyframes swing {
+  0%   { transform: rotate(0deg); }
+  25%  { transform: rotate(5deg); }
+  50%  { transform: rotate(-5deg); }
+  75%  { transform: rotate(3deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.bulb-swing {
+  animation: swing 0.8s ease-in-out;
+  transform-origin: top center;
+}
+
+@keyframes bounce {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+.bulb-bounce {
+  animation: bounce 0.4s ease;
 }

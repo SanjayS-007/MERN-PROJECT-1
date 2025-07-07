@@ -94,7 +94,7 @@
   box-shadow: 0 4px 14px rgba(0, 200, 83, 0.3);
   transition: all 0.2s ease;
 }
-
+  
 .show-all-btn:hover {
   transform: scale(1.04);
   box-shadow: 0 6px 18px rgba(0, 200, 83, 0.45);
