@@ -11,16 +11,39 @@
   justify-content: space-between;
   padding: 18px 24px;
   border-radius: 16px;
-  background: linear-gradient(135deg, #f9fff9, #eaffea);
+  background: linear-gradient(135deg, #f9fff9, #eaffea); /* default credit look */
   border-left: 6px solid #00c853;
   box-shadow: 0 10px 25px rgba(0, 200, 83, 0.2);
   transform: perspective(800px) rotateX(0deg);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeInUp 0.4s ease-in-out;
 }
 
 .transaction-item:hover {
   transform: perspective(800px) rotateX(3deg);
   box-shadow: 0 16px 30px rgba(0, 200, 83, 0.35);
+}
+
+/* ✅ Green theme for credit */
+.transaction-credit {
+  background: linear-gradient(135deg, #f9fff9, #eaffea);
+  border-left: 6px solid #00c853;
+  box-shadow: 0 10px 25px rgba(0, 200, 83, 0.2);
+}
+
+.transaction-credit:hover {
+  box-shadow: 0 16px 30px rgba(0, 200, 83, 0.35);
+}
+
+/* ✅ Red theme for debit */
+.transaction-debit {
+  background: linear-gradient(135deg, #fff0f0, #ffd4d4);
+  border-left: 6px solid #ff5252;
+  box-shadow: 0 10px 25px rgba(255, 82, 82, 0.2);
+}
+
+.transaction-debit:hover {
+  box-shadow: 0 16px 30px rgba(255, 82, 82, 0.35);
 }
 
 .transaction-icon {
@@ -59,9 +82,6 @@
   margin: 25px 0 15px;
   color: #333;
 }
-.transaction-item {
-  animation: fadeInUp 0.4s ease-in-out;
-}
 
 @keyframes fadeInUp {
   0% {
@@ -80,24 +100,6 @@
   align-items: center;
   gap: 15px;
   margin-top: 20px;
-}
-
-.show-all-btn {
-  padding: 12px 24px;
-  background: linear-gradient(to right, #00c853, #43a047);
-  color: white;
-  font-weight: 600;
-  font-size: 1rem;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  box-shadow: 0 4px 14px rgba(0, 200, 83, 0.3);
-  transition: all 0.2s ease;
-}
-
-.show-all-btn:hover {
-  transform: scale(1.04);
-  box-shadow: 0 6px 18px rgba(0, 200, 83, 0.45);
 }
 
 .download-dropdown {
@@ -123,4 +125,6 @@
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
   transform: scale(1.02);
 }
+
+
 

@@ -60,11 +60,6 @@ const CreditExpenseBlock = ({
             </div>
           </div>
         </div>
-        <div className="d-flex justify-content-center">
-            <button className="show-all-btn">
-              Show All Transactions
-            </button>
-        </div>
       </div>
     </div>
   );

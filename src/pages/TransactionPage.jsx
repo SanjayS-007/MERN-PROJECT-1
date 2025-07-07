@@ -86,10 +86,19 @@ const handleDownload = (e) => {
           setShowAll(false); // reset to filtered view
         }} />
 
-        <div className="transaction-controls">
-  <button onClick={handleToggle} className="show-all-btn">
-    {showAll ? 'Show Filtered Transactions' : 'Show All Transactions'}
-  </button>
+      <div className="transaction-controls">
+        <button
+            onClick={handleToggle}
+            className={`show-all-btn ${type}`}
+            style={{
+              background: type === 'debit' ? 'red' : 'green',
+              color: 'white',
+              padding: '10px 20px',
+            }}
+        >
+            {showAll ? 'Show Filtered Transactions' : 'Show All Transactions'}
+        </button>
+
 
   <select onChange={handleDownload} className="download-dropdown" defaultValue="">
     <option value="" disabled>📥 Download As</option>
