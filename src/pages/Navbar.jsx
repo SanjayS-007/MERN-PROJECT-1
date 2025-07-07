@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
+import BulbToggle from './BulbToggle';
 
 const Navbar = ({ username = 'Sanjay' }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -33,7 +34,9 @@ const Navbar = ({ username = 'Sanjay' }) => {
         </div>
       </div>
 
+
       <div className="nav-right" ref={dropdownRef}>
+        <BulbToggle />
         <div className="user-info" onClick={toggleDropdown}>
           <div className="user-avatar">SA</div>
           <span>{username}</span>
