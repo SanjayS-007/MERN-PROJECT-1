@@ -2,6 +2,8 @@
 import React from 'react';
 import CreditExpenseBlock from '../CreditExpenseBlock';
 import { useNavigate } from 'react-router-dom';
+import Navbar from './Navbar'; // Adjust the import path as necessary
+
 
 function HomePage() {
   const navigate = useNavigate();
