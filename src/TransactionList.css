@@ -83,6 +83,10 @@
   color: #333;
 }
 
+.show-all-btn.all {
+  background: linear-gradient(to right, #607d8b, #455a64); /* bluish gray */
+}
+
 @keyframes fadeInUp {
   0% {
     opacity: 0;

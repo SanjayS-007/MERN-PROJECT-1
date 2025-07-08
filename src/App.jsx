@@ -10,7 +10,7 @@ function App() {
     <Routes>
       <Route path="/" element={<HomePage />} />
       {/* <Route path="/calendar" element={<CalendarPage />} /> */}
-      <Route path="/transactions/:date" element={<TransactionPage />} />
+      <Route path="/transactions" element={<TransactionPage type="all" />} />
       <Route path="/transactions/credit" element={<TransactionPage type="credit" />} />
       <Route path="/transactions/debit" element={<TransactionPage type="debit" />} />
       <Route path="*" element={<div>404 Not Found</div>} />
