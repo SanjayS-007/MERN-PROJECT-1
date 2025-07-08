@@ -106,24 +106,6 @@
   margin-top: 20px;
 }
 
-.show-all-btn {
-  padding: 12px 24px;
-  background: linear-gradient(to right, #00c853, #43a047);
-  color: white;
-  font-weight: 600;
-  font-size: 1rem;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  box-shadow: 0 4px 14px rgba(0, 200, 83, 0.3);
-  transition: all 0.2s ease;
-}
-  
-.show-all-btn:hover {
-  transform: scale(1.04);
-  box-shadow: 0 6px 18px rgba(0, 200, 83, 0.45);
-}
-
 .download-dropdown {
   padding: 12px 20px;
   font-size: 1rem;
