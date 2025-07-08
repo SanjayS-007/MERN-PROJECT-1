@@ -8,6 +8,7 @@ const allTransactions = [
   { id: 1, type: 'credit', amount: 5000, date: '2025-07-01' },
   { id: 2, type: 'credit', amount: 2000, date: '2025-07-02' },
   { id: 3, type: 'credit', amount: 3000, date: '2025-07-05' },
+  { id: 4, type: 'debit', amount: 1000, date: '2025-07-03'},
 ];
 
 const TransactionPage = ({ type }) => {
@@ -17,14 +18,21 @@ const TransactionPage = ({ type }) => {
 
   useEffect(() => {
     if (showAll || !selectedDate) {
-      setFilteredTransactions(allTransactions.filter(tx => tx.type === type));
+      setFilteredTransactions(
+        type === 'all'
+          ? allTransactions
+          : allTransactions.filter(tx => tx.type === type)
+      );
     } else {
-      const filtered = allTransactions.filter(
-        tx => tx.type === type && tx.date === selectedDate
+      const filtered = allTransactions.filter(tx =>
+        type === 'all'
+          ? tx.date === selectedDate
+          : tx.type === type && tx.date === selectedDate
       );
       setFilteredTransactions(filtered);
     }
   }, [selectedDate, type, showAll]);
+  
 
   const handleToggle = () => {
     setShowAll(prev => !prev);
@@ -51,7 +59,7 @@ const handleDownload = (e) => {
   if (format === 'pdf') {
     const doc = new jsPDF();
     doc.setFontSize(14);
-    doc.text(`${type.toUpperCase()} Transactions`, 20, 20);
+    doc.text(`${type === 'all' ? 'All' : type.toUpperCase()} Transactions`, 20, 20);
 
     let y = 40;
     doc.setFontSize(12);
@@ -73,7 +81,7 @@ const handleDownload = (e) => {
     <div style={{ display: 'flex', gap: '30px', padding: '30px' }}>
       {/* Filtered or All Transactions */}
       <div style={{ flex: 1 }}>
-        <h2>💰 {type.toUpperCase()} Transactions</h2>
+        <h2>💰 { type === 'all' ? 'All' : type.toUpperCase()} Transactions</h2>
         <TransactionList transactions={filteredTransactions} />
       </div>
 
@@ -85,10 +93,19 @@ const handleDownload = (e) => {
           setShowAll(false); // reset to filtered view
         }} />
 
-        <div className="transaction-controls">
-  <button onClick={handleToggle} className="show-all-btn">
-    {showAll ? 'Show Filtered Transactions' : 'Show All Transactions'}
-  </button>
+      <div className="transaction-controls">
+        <button
+            onClick={handleToggle}
+            className={`show-all-btn ${type}`}
+            style={{
+              background: type === 'debit' ? 'red' : 'green',
+              color: 'white',
+              padding: '10px 20px',
+            }}
+        >
+            {showAll ? 'Show Filtered Transactions' : 'Show All Transactions'}
+        </button>
+
 
   <select onChange={handleDownload} className="download-dropdown" defaultValue="">
     <option value="" disabled>📥 Download As</option>

@@ -6,7 +6,7 @@ const TransactionList = ({ transactions }) => {
       {transactions.map((tx) => (
         <div
           key={tx.id}
-          className={`transaction-item transaction-${tx.type}`}
+          className={`transaction-item ${tx.type === 'debit' ? 'transaction-debit' : 'transaction-credit'}`}
         >
           <div className="transaction-icon">
             {tx.type === 'credit' ? '💸' : '📤'}
