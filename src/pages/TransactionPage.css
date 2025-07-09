@@ -1,4 +1,8 @@
 .show-all-btn.all {
-    background: linear-gradient(to right, #607d8b, #455a64); /* bluish gray */
+    background: linear-gradient(to right, #607d8b, #455a64);/* bluish gray */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
-  
+.show-all-btn.all:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 18px rgba(96, 125, 139, 0.4);
+  }

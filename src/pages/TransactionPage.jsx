@@ -97,11 +97,6 @@ const handleDownload = (e) => {
         <button
             onClick={handleToggle}
             className={`show-all-btn ${type}`}
-            style={{
-              background: type === 'debit' ? 'red' : 'green',
-              color: 'white',
-              padding: '10px 20px',
-            }}
         >
             {showAll ? 'Show Filtered Transactions' : 'Show All Transactions'}
         </button>
